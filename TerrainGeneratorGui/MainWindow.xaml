@@ -1,0 +1,40 @@
+﻿<Window x:Class="TerrainGeneratorGui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TerrainGeneratorGui"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525"
+       
+      >
+    <Window.DataContext>
+        <local:MainViewModel/>
+    </Window.DataContext>
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <local:MapPreview Data="{Binding Data}">
+            <local:MapPreview.HeightGradient>
+                <LinearGradientBrush>
+                    <GradientStop Color="DarkBlue" Offset="0"/>
+                    <GradientStop Color="Blue" Offset="0.05"/>
+                    <GradientStop Color="LightBlue" Offset="0.099999999"/>
+                    <GradientStop Color="ForestGreen" Offset="0.1"/>
+                    <GradientStop Color="LightGreen" Offset="0.5"/>
+                    <GradientStop Color="Brown" Offset="0.8"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </local:MapPreview.HeightGradient>
+           
+        </local:MapPreview>
+        <Button Grid.Row="1" Command="{Binding GenerateTerrainCommand}">Start</Button>
+        <ProgressBar Grid.Row="2" Height="20" Minimum="0" Maximum="100" Value="{Binding Progress}"/>
+        <ProgressBar Grid.Row="3" Height="20" Minimum="0" Maximum="8" Value="{Binding Stage}"/>
+    </Grid>
+</Window>
